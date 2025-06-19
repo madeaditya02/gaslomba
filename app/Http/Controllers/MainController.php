@@ -12,4 +12,12 @@ class MainController extends Controller
     {
         return Inertia::render('Landing');
     }
+    public function explore()
+    {
+        return Inertia::render('Explore');
+    }
+    public function details($id)
+    {
+        return Inertia::render('DetailLomba');
+    }
 }
