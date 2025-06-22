@@ -17,7 +17,7 @@ class PesertaFactory extends Factory
      */
     public function definition(): array
     {
-        $listTingkatan = collect(['SMA', 'Mahasiswa', 'Umum']);
+        $listTingkatan = collect(['sma', 'mahasiswa', 'umum']);
         $num = random_int(10,99);
         $tingkatan = $listTingkatan->random();
         return [
@@ -26,8 +26,8 @@ class PesertaFactory extends Factory
             'no_telepon' => fake()->phoneNumber(),
             'tingkatan' => $tingkatan,
             'password' => Hash::make('password'),
-            'asal_instansi' => $tingkatan == 'SMA' ? 'SMA Negeri 1 Denpasar' : ($tingkatan == 'Mahasiswa' ? 'Universitas Udayana' : null),
-            'kode_identitas' => $tingkatan == 'SMA' ? "1211980$num" : ($tingkatan == 'Mahasiswa' ? "23085610$num" : fake()->nik())
+            'asal_instansi' => $tingkatan == 'sma' ? 'SMA Negeri 1 Denpasar' : ($tingkatan == 'mahasiswa' ? 'Universitas Udayana' : null),
+            'kode_identitas' => $tingkatan == 'sma' ? "1211980$num" : ($tingkatan == 'mahasiswa' ? "23085610$num" : fake()->nik())
         ];
     }
 }
