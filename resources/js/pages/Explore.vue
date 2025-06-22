@@ -22,15 +22,15 @@ import {
 </script>
 <template>
     <AppLayout>
-        <div class="items-center justify-center flex flex-row gap-5 pt-5">
+        <div class="items-center justify-center flex lg:flex-row flex-col gap-5 pt-5">
             <div class="w-fit relative">
                 <img src="/assets/kaca.png" class="w-[16px] h-[16px] absolute top-1/2 left-4 -translate-y-1/2" />
-                <Input placeholder="Cari Lomba" class="w-[260px] bg-silver pl-10 text-blue-950 placeholder:text-blue-950 placeholder:font-semibold font-semibold" />
+                <Input placeholder="Cari Lomba" class="lg:w-[260px] w-[310px] text-sm bg-silver pl-10 text-blue-950 placeholder:text-blue-950 placeholder:font-semibold font-semibold" />
             </div>
             <div class="w-fit relative">
                 <img src="/assets/org.png" class="w-[16px] h-[16px] absolute top-1/2 left-4 -translate-y-1/2" />
                 <Select>
-                    <SelectTrigger class="w-[260px] bg-silver pl-10 text-blue-950 placeholder:text-blue-950 placeholder:font-semibold font-semibold">
+                    <SelectTrigger class="lg:w-[260px] w-[310px] bg-silver pl-10 text-blue-950 placeholder:text-blue-950 placeholder:font-semibold font-semibold">
                     <SelectValue placeholder="Jenjang" class="text-blue-950"/>
                     </SelectTrigger>
                     <SelectContent>
@@ -52,7 +52,7 @@ import {
             <div class="w-fit relative">
                 <img src="/assets/segi.png" class="w-[16px] h-[16px] absolute top-1/2 left-4 -translate-y-1/2" />
                 <Select>
-                    <SelectTrigger class="w-[260px] bg-silver pl-10 text-blue-950 placeholder:text-blue-950 placeholder:font-semibold font-semibold">
+                    <SelectTrigger class="lg:w-[260px] w-[310px] bg-silver pl-10 text-blue-950 placeholder:text-blue-950 placeholder:font-semibold font-semibold">
                     <SelectValue placeholder="Kategori" class="text-blue-950"/>
                     </SelectTrigger>
                     <SelectContent>
@@ -71,27 +71,25 @@ import {
                 </Select>
             </div>
 
-            <Button class="border-2 border-slate-300 w-[260px] text-white bg-0 hover:bg-white/10">Search</Button>
+            <Button class="border-2 border-slate-300 lg:w-[260px] w-[310px] text-white bg-0 hover:bg-white/10">Search</Button>
         </div>
-        <div class="flex flex-row items-center justify-center gap-5 pt-15">
-            <div class="w-[260px] h-[405px] bg-silver rounded-lg mt-5 items-center flex flex-col hover:shadow-[0_0_20px_4px_rgba(59,130,246,0.5)] transition-shadow duration-300">
-                <img src="/assets/poster1.jpg" class="w-[220px] h-[320px] mt-5 rounded-md"/>
-                <Button class="w-[220px] h-[30px] bg-blue-950 text-white mt-5 hover:bg-blue-900">Lihat Detail</Button>
-            </div>
-            <div class="w-[260px] h-[405px] bg-silver rounded-lg mt-5 items-center flex flex-col hover:shadow-[0_0_20px_4px_rgba(59,130,246,0.5)] transition-shadow duration-300">
-                <img src="/assets/poster2.jpg" class="w-[220px] h-[320px] mt-5 rounded-md"/>
-                <Button class="w-[220px] h-[30px] bg-blue-950 text-white mt-5 hover:bg-blue-900">Lihat Detail</Button>
-            </div>
-            <div class="w-[260px] h-[405px] bg-silver rounded-lg mt-5 items-center flex flex-col hover:shadow-[0_0_20px_4px_rgba(59,130,246,0.5)] transition-shadow duration-300">
-                <img src="/assets/poster3.jpg" class="w-[220px] h-[320px] mt-5 rounded-md"/>
-                <Button class="w-[220px] h-[30px] bg-blue-950 text-white mt-5 hover:bg-blue-900">Lihat Detail</Button>
-            </div>
-            <div class="w-[260px] h-[405px] bg-silver rounded-lg mt-5 items-center flex flex-col hover:shadow-[0_0_20px_4px_rgba(59,130,246,0.5)] transition-shadow duration-300">
-                <img src="/assets/poster4.jpg" class="w-[220px] h-[320px] mt-5 rounded-md"/>
-                <Button class="w-[220px] h-[30px] bg-blue-950 text-white mt-5 hover:bg-blue-900">Lihat Detail</Button>
-            </div>
+
+        <div class="flex md:flex-row flex-col items-center justify-center md:gap-3 gap-5 md:pt-15 pt-8">
+          <div class="lg:w-[260px] md:w-[220px] w-[310px] lg:h-[405px] md:h-[370px] h-[450px] bg-silver rounded-lg mt-5 items-center flex flex-col hover:shadow-[0_0_20px_4px_rgba(59,130,246,0.5)] transition-shadow duration-300">
+              <img src="/assets/poster1.jpg" class="lg:w-[220px] lg:h-[320px] md:w-[190px] md:h-[290px] w-[270px] h-[370px] mt-5 rounded-md"/>
+              <Button href="/lomba"class="lg:w-[220px] md:w-[190px] w-[270px] h-[30px] bg-blue-950 text-white md:mt-5 mt-3 hover:bg-blue-900">Lihat Detail</Button>
+          </div>
+          <div class="lg:w-[260px] md:w-[220px] w-[310px] lg:h-[405px] md:h-[370px] h-[450px] bg-silver rounded-lg mt-5 items-center flex flex-col hover:shadow-[0_0_20px_4px_rgba(59,130,246,0.5)] transition-shadow duration-300">
+              <img src="/assets/poster2.jpg" class="lg:w-[220px] lg:h-[320px] md:w-[190px] md:h-[290px] w-[270px] h-[370px] mt-5 rounded-md"/>
+              <Button class="lg:w-[220px] md:w-[190px] w-[270px] h-[30px] bg-blue-950 text-white md:mt-5 mt-3 hover:bg-blue-900">Lihat Detail</Button>
+          </div>
+          <div class="lg:w-[260px] md:w-[220px] w-[310px] lg:h-[405px] md:h-[370px] h-[450px] bg-silver rounded-lg mt-5 items-center flex flex-col hover:shadow-[0_0_20px_4px_rgba(59,130,246,0.5)] transition-shadow duration-300">
+              <img src="/assets/poster3.jpg" class="lg:w-[220px] lg:h-[320px] md:w-[190px] md:h-[290px] w-[270px] h-[370px] mt-5 rounded-md"/>
+              <Button class="lg:w-[220px] md:w-[190px] w-[270px] h-[30px] bg-blue-950 text-white md:mt-5 mt-3 hover:bg-blue-900">Lihat Detail</Button>
+          </div>
         </div>
-        <Pagination v-slot="{ page }" :items-per-page="10" :total="30" :default-page="2" class="py-15">
+
+        <Pagination v-slot="{ page }" :items-per-page="10" :total="30" :default-page="2" class="py-20">
             <PaginationContent v-slot="{ items }"class="flex items-center justify-center gap-2">
             <PaginationPrevious class="px-3 py-1 rounded bg-silver hover:shadow-[0_0_20px_2px_rgba(59,130,246,0.5)] transition-shadow duration-300"/>
 

@@ -6,27 +6,27 @@ import { Link } from '@inertiajs/vue3';
 
 <template>
   <AppLayout>
-    <div class="items-center justify-center flex flex-col gap-5 pt-5">
-      <div class="flex justify-start pt-5">
-        <img src="/assets/rokettt.png" class="relative w-180 mr-150"/>
+    <div class="items-center justify-center flex flex-col gap-5 md:pt-5 pt-50">
+      <div class="flex justify-start w-full md:pt-10">
+        <img src="/assets/rokettt.png" class="relative lg:w-180 md:w-110 w-95 md:ml-12 mx-auto"/>
       </div>
-      <div class="mt-20 flex flex-col items-center justify-center">
-        <h1 class="grobold-font text-4xl">Kompetensi Tepat untuk Potensi Hebatmu !</h1>
-        <div class="flex flex-row items-center justify-center gap-5 pt-15">
-          <div class="w-[260px] h-[405px] bg-silver rounded-lg mt-5 items-center flex flex-col hover:shadow-[0_0_20px_4px_rgba(59,130,246,0.5)] transition-shadow duration-300">
-              <img src="/assets/poster1.jpg" class="w-[220px] h-[320px] mt-5 rounded-md"/>
-              <Button href="/lomba"class="w-[220px] h-[30px] bg-blue-950 text-white mt-5 hover:bg-blue-900">Lihat Detail</Button>
+      <div class="mt-30 flex flex-col items-center justify-center">
+        <h1 class="grobold-font md:text-3xl lg:text-4xl">Kompetensi Tepat untuk Potensi Hebatmu !</h1>
+        <div class="flex md:flex-row flex-col items-center justify-center md:gap-3 gap-5 md:pt-15 pt-8">
+          <div class="lg:w-[260px] md:w-[220px] w-[310px] lg:h-[405px] md:h-[370px] h-[450px] bg-silver rounded-lg mt-5 items-center flex flex-col hover:shadow-[0_0_20px_4px_rgba(59,130,246,0.5)] transition-shadow duration-300">
+              <img src="/assets/poster1.jpg" class="lg:w-[220px] lg:h-[320px] md:w-[190px] md:h-[290px] w-[270px] h-[370px] mt-5 rounded-md"/>
+              <Button href="/lomba"class="lg:w-[220px] md:w-[190px] w-[270px] h-[30px] bg-blue-950 text-white md:mt-5 mt-3 hover:bg-blue-900">Lihat Detail</Button>
           </div>
-          <div class="w-[260px] h-[405px] bg-silver rounded-lg mt-5 items-center flex flex-col hover:shadow-[0_0_20px_4px_rgba(59,130,246,0.5)] transition-shadow duration-300">
-              <img src="/assets/poster2.jpg" class="w-[220px] h-[320px] mt-5 rounded-md"/>
-              <Button class="w-[220px] h-[30px] bg-blue-950 text-white mt-5 hover:bg-blue-900">Lihat Detail</Button>
+          <div class="lg:w-[260px] md:w-[220px] w-[310px] lg:h-[405px] md:h-[370px] h-[450px] bg-silver rounded-lg mt-5 items-center flex flex-col hover:shadow-[0_0_20px_4px_rgba(59,130,246,0.5)] transition-shadow duration-300">
+              <img src="/assets/poster2.jpg" class="lg:w-[220px] lg:h-[320px] md:w-[190px] md:h-[290px] w-[270px] h-[370px] mt-5 rounded-md"/>
+              <Button class="lg:w-[220px] md:w-[190px] w-[270px] h-[30px] bg-blue-950 text-white md:mt-5 mt-3 hover:bg-blue-900">Lihat Detail</Button>
           </div>
-          <div class="w-[260px] h-[405px] bg-silver rounded-lg mt-5 items-center flex flex-col hover:shadow-[0_0_20px_4px_rgba(59,130,246,0.5)] transition-shadow duration-300">
-              <img src="/assets/poster3.jpg" class="w-[220px] h-[320px] mt-5 rounded-md"/>
-              <Button class="w-[220px] h-[30px] bg-blue-950 text-white mt-5 hover:bg-blue-900">Lihat Detail</Button>
+          <div class="lg:w-[260px] md:w-[220px] w-[310px] lg:h-[405px] md:h-[370px] h-[450px] bg-silver rounded-lg mt-5 items-center flex flex-col hover:shadow-[0_0_20px_4px_rgba(59,130,246,0.5)] transition-shadow duration-300">
+              <img src="/assets/poster3.jpg" class="lg:w-[220px] lg:h-[320px] md:w-[190px] md:h-[290px] w-[270px] h-[370px] mt-5 rounded-md"/>
+              <Button class="lg:w-[220px] md:w-[190px] w-[270px] h-[30px] bg-blue-950 text-white md:mt-5 mt-3 hover:bg-blue-900">Lihat Detail</Button>
           </div>
         </div>
-        <Link href="/explore" class="px-10 py-2 my-10 mb-15 rounded-md bg-silver font-semibold hover:shadow-[0_0_20px_2px_rgba(59,130,246,0.5)] transition-shadow duration-300">Explore Lebih Banyak! > </Link>
+        <Link href="/explore" class="px-10 py-2 mt-15 mb-15 rounded-md bg-silver font-semibold hover:shadow-[0_0_20px_2px_rgba(59,130,246,0.5)] transition-shadow duration-300">Explore Lebih Banyak! > </Link>
       </div>
     </div>
   </AppLayout>
