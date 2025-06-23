@@ -10,9 +10,9 @@ defineProps<{
 </script>
 
 <template>
-    <div class="flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10 text-white z-2">
-        <div class="w-full max-w-sm">
-            <div class="flex flex-col gap-8">
+    <div class="relative flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10 text-white z-2">
+        <div class="w-full max-w-2xl">
+            <div class="flex flex-col gap-4">
                 <div class="flex flex-col items-center gap-4">
                     <Link href="/" class="flex flex-col items-center gap-2 font-medium">
                     <img src="/assets/logo.png" alt="" class="w-52 max-w-full mx-auto mb-1">
@@ -28,7 +28,7 @@ defineProps<{
         </div>
     </div>
     <div class="absolute top-0 right-0 bottom-0 overflow-hidden">
-        <img src="/assets/vector-yellow-4.png" alt="" class="w-72">
+        <img src="/assets/vector-yellow-4.png" alt="" class="w-24 sm:w-72">
     </div>
-    <img src="/assets/vector-white-2.png" alt="" class="w-24 absolute bottom-16 left-0">
+    <img src="/assets/vector-white-2.png" alt="" class="w-16 sm:w-24 absolute bottom-16 left-0">
 </template>
