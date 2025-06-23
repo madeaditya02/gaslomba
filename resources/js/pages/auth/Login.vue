@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import InputError from '@/components/InputError.vue';
-import TextLink from '@/components/TextLink.vue';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import AuthBase from '@/layouts/AuthLayout.vue';
-import { Head, useForm } from '@inertiajs/vue3';
-import { LoaderCircle } from 'lucide-vue-next';
+import AuthLayout from '@/layouts/AuthLayout.vue';
+import { useForm } from '@inertiajs/vue3';
+import { ref } from 'vue';
 
 defineProps<{
     status?: string;
     canResetPassword: boolean;
 }>();
+
+const showPassword = ref(false);
+const togglePassword = () => {
+    showPassword.value = !showPassword.value;
+};
 
 const form = useForm({
     email: '',
@@ -26,68 +25,83 @@ const submit = () => {
     });
 };
 </script>
-
 <template>
-    <AuthBase title="Log in to your account" description="Enter your email and password below to log in">
-        <Head title="Log in" />
+    <AuthLayout>
+        <Head title="Login" />
 
-        <div v-if="status" class="mb-4 text-center text-sm font-medium text-green-600">
-            {{ status }}
-        </div>
-
-        <form @submit.prevent="submit" class="flex flex-col gap-6">
-            <div class="grid gap-6">
-                <div class="grid gap-2">
-                    <Label for="email">Email address</Label>
-                    <Input
-                        id="email"
-                        type="email"
-                        required
-                        autofocus
-                        :tabindex="1"
-                        autocomplete="email"
-                        v-model="form.email"
-                        placeholder="email@example.com"
-                    />
-                    <InputError :message="form.errors.email" />
-                </div>
-
-                <div class="grid gap-2">
-                    <div class="flex items-center justify-between">
-                        <Label for="password">Password</Label>
-                        <TextLink v-if="canResetPassword" :href="route('password.request')" class="text-sm" :tabindex="5">
-                            Forgot password?
-                        </TextLink>
+        <div
+            class="flex min-h-screen items-center justify-center bg-cover bg-center px-4"
+            :style="{ backgroundImage: 'url(/images/background.png)' }"
+        >
+            <div class="mt-[-60px] w-full max-w-[440px] bg-transparent p-6">
+                <form @submit.prevent="submit" class="space-y-6">
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="mb-1 block text-lg font-extrabold text-white">Email</label>
+                        <input
+                            id="email"
+                            v-model="form.email"
+                            type="email"
+                            placeholder="Masukkan Email"
+                            required
+                            class="w-full rounded-2xl bg-white/90 px-5 py-3 font-semibold text-gray-700 shadow-[inset_0_4px_8px_rgba(0,0,0,0.2)] focus:outline-none"
+                        />
                     </div>
-                    <Input
-                        id="password"
-                        type="password"
-                        required
-                        :tabindex="2"
-                        autocomplete="current-password"
-                        v-model="form.password"
-                        placeholder="Password"
-                    />
-                    <InputError :message="form.errors.password" />
-                </div>
 
-                <div class="flex items-center justify-between">
-                    <Label for="remember" class="flex items-center space-x-3">
-                        <Checkbox id="remember" v-model="form.remember" :tabindex="3" />
-                        <span>Remember me</span>
-                    </Label>
-                </div>
+                    <!-- Password -->
+                    <div>
+                        <label for="password" class="mb-1 block text-lg font-extrabold text-white">Password</label>
+                        <div class="relative">
+                            <input
+                                id="password"
+                                v-model="form.password"
+                                :type="showPassword ? 'text' : 'password'"
+                                placeholder="Masukkan Password"
+                                required
+                                class="w-full rounded-2xl bg-white/90 px-5 py-3 font-semibold text-gray-700 shadow-[inset_0_4px_8px_rgba(0,0,0,0.2)] focus:outline-none"
+                            />
+                            <span class="absolute inset-y-0 right-3 flex cursor-pointer items-center" @click="togglePassword">
+                                <svg
+                                    v-if="!showPassword"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5 text-gray-600"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        d="M2.458 10C3.732 6.943 6.94 5 10 5c3.06 0 6.268 1.943 7.542 5-1.274 3.057-4.482 5-7.542 5-3.06 0-6.268-1.943-7.542-5zM10 7a3 3 0 100 6 3 3 0 000-6z"
+                                    />
+                                </svg>
+                                <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" viewBox="0 0 20 20" fill="currentColor">
+                                    <path
+                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    />
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
 
-                <Button type="submit" class="mt-4 w-full" :tabindex="4" :disabled="form.processing">
-                    <LoaderCircle v-if="form.processing" class="h-4 w-4 animate-spin" />
-                    Log in
-                </Button>
+                    <!-- Login Button -->
+                    <button
+                        type="submit"
+                        class="w-full rounded-2xl border-2 border-white py-2 text-lg font-extrabold text-white transition hover:bg-white/10"
+                    >
+                        LOGIN
+                    </button>
+
+                    <!-- Register -->
+                    <p class="text-center text-sm text-white">
+                        Belum memiliki akun?
+                        <a :href="route('register')" class="font-bold underline">REGISTER</a>
+                    </p>
+                </form>
             </div>
-
-            <div class="text-center text-sm text-muted-foreground">
-                Don't have an account?
-                <TextLink :href="route('register')" :tabindex="5">Sign up</TextLink>
-            </div>
-        </form>
-    </AuthBase>
+        </div>
+    </AuthLayout>
 </template>
+
+<style scoped>
+body {
+    font-family: 'Poppins', sans-serif;
+}
+</style>
