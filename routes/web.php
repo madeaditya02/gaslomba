@@ -14,7 +14,6 @@ Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
 Route::get('/explore', [MainController::class, 'explore'])->name('explore');
 Route::get('/lomba/{id}', [MainController::class, 'details'])->name('details');
 

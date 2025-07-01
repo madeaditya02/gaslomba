@@ -12,7 +12,7 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    protected $table = 'penyelenggara';
+    protected $table = 'akun', $primaryKey = 'id_akun';
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +20,6 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
     ];
@@ -43,18 +42,29 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
     }
 
+    protected $with = ['peserta', 'penyelenggara'];
+
     /**
-     * Get all of the lomba for the User
+     * Get the peserta associated with the User
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function lomba()
+    public function peserta()
     {
-        return $this->hasMany(Lomba::class, 'id_lomba', 'id_lomba');
+        return $this->hasOne(Peserta::class, 'id_akun', 'id_akun');
+    }
+    
+    /**
+     * Get the penyelenggara associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function penyelenggara()
+    {
+        return $this->hasOne(Penyelenggara::class, 'id_akun', 'id_akun');
     }
 }

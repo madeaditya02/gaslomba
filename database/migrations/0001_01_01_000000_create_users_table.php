@@ -11,15 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('penyelenggara', function (Blueprint $table) {
-            $table->id('id_user');
-            $table->string('nama_penyelenggara');
+        Schema::create('akun', function (Blueprint $table) {
+            $table->id('id_akun');
             $table->string('email')->unique();
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+        Schema::create('penyelenggara', function (Blueprint $table) {
+            $table->id('id_penyelenggara');
+            $table->string('nama_penyelenggara');
             $table->string('alamat');
             $table->string('nomor_telepon');
             $table->string('provinsi')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->foreignId('id_akun')->nullable();
+            $table->foreign('id_akun')->references('id_akun')->on('akun');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -45,7 +51,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('akun');
+        Schema::dropIfExists('penyelenggara');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
     }

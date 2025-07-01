@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import InputError from '@/components/InputError.vue';
 import AuthLayout from '@/layouts/AuthLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
@@ -39,6 +40,7 @@ const submit = () => {
                         <label for="email" class="mb-1 block text-lg font-extrabold text-white">Email</label>
                         <input id="email" v-model="form.email" type="email" placeholder="Masukkan Email" required
                             class="w-full rounded-2xl bg-white/90 px-5 py-3 font-semibold text-gray-700 shadow-[inset_0_4px_8px_rgba(0,0,0,0.2)] focus:outline-none" />
+                        <InputError :message="form.errors.email" class="mt-1" />
                     </div>
 
                     <!-- Password -->
@@ -48,6 +50,7 @@ const submit = () => {
                             <input id="password" v-model="form.password" :type="showPassword ? 'text' : 'password'"
                                 placeholder="Masukkan Password" required
                                 class="w-full rounded-2xl bg-white/90 px-5 py-3 font-semibold text-gray-700 shadow-[inset_0_4px_8px_rgba(0,0,0,0.2)] focus:outline-none" />
+                            <InputError :message="form.errors.password" class="mt-1" />
                             <span class="absolute inset-y-0 right-3 flex cursor-pointer items-center"
                                 @click="togglePassword">
                                 <svg v-if="!showPassword" xmlns="http://www.w3.org/2000/svg"
