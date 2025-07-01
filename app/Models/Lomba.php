@@ -19,7 +19,7 @@ class Lomba extends Model
      */
     public function penyelenggara()
     {
-        return $this->belongsTo(User::class, 'id_lomba', 'id_lomba');
+        return $this->belongsTo(Penyelenggara::class, 'id_penyelenggara', 'id_penyelenggara');
     }
 
     /**

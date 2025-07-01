@@ -24,12 +24,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'nama_penyelenggara' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'provinsi' => 'Bali',
-            'nomor_telepon' => '08973891362',
-            'alamat' => 'Kampus Udayana Bukit Jimbaran',
-            'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];

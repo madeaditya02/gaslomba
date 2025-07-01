@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use App\Models\Lomba;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        JsonResource::withoutWrapping();
+
+        Gate::define('active-competition', function (User $user, Lomba $lomba) {
+            return $lomba->tanggal_mulai <= today() && $lomba->tanggal_selesai >= today();
+        });
     }
 }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Sidebar from '@/components/Sidebar.vue';
 import { ref } from "vue";
+document.body.classList.remove('main')
 const show = ref(false)
 </script>
 <template>

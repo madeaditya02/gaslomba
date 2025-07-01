@@ -30,19 +30,48 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        $user;
+        if ($request->tipe == 'peserta') {
+            $data = $request->validate([
+                'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+                'nama' => 'required',
+                'telpon' => 'required',
+                'tingkatan' => 'required',
+                'instansi' => 'required',
+                'identitas' => 'required',
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            ]);
+            $user = User::create([
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+            $user->peserta()->create([
+                'nama' => $data['nama'],
+                'kode_identitas' => $data['identitas'],
+                'no_telepon' => $data['telpon'],
+                'tingkatan' => $data['tingkatan'],
+                'asal_instansi' => $data['instansi'],
+            ]);
+        } else if ($request->tipe == 'penyelenggara') {
+            $data = $request->validate([
+                'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+                'nama_penyelenggara' => 'required',
+                'nomor_telepon' => 'required',
+                'alamat' => 'required',
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            ]);
+            $user = User::create([
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+            $user->penyelenggara()->create([
+                'nama_penyelenggara' => $data['nama_penyelenggara'],
+                'alamat' => $data['alamat'],
+                'nomor_telepon' => $data['nomor_telepon'],
+            ]);
+        }
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        event(new Registered($user));
+        // event(new Registered($user));
 
         Auth::login($user);
 

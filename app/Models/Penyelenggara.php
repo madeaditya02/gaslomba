@@ -5,25 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Peserta extends Model
+class Penyelenggara extends Model
 {
     /** @use HasFactory<\Database\Factories\PesertaFactory> */
     use HasFactory;
 
-    protected $table = 'peserta', $primaryKey = 'id_peserta', $guarded = [];
+    protected $table = 'penyelenggara', $primaryKey = 'id_penyelenggara', $guarded = [];
 
     /**
-     * The pendaftaran that belong to the Peserta
+     * Get all of the lomba for the User
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function pendaftaran()
+    public function lomba()
     {
-        return $this->belongsToMany(pendaftaran::class, 'peserta_pendaftaran', 'id_peserta', 'id_pendaftaran');
+        return $this->hasMany(Lomba::class, 'id_penyelenggara', 'id_penyelenggara');
     }
 
     /**
-     * Get the user that owns the Peserta
+     * Get the user that owns the Penyelenggara
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

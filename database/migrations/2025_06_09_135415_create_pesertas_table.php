@@ -15,12 +15,13 @@ return new class extends Migration
             $table->id('id_peserta');
             $table->string('nama');
             $table->string('kode_identitas');
-            $table->string('email')->unique();
             $table->string('no_telepon');
             $table->string('tingkatan');
-            $table->string('password');
+            $table->string('profile_picture');
+            $table->foreignId('id_akun')->nullable();
             $table->string('asal_instansi')->nullable();
             $table->foreign('tingkatan')->references('id_tingkatan')->on('tingkatan');
+            $table->foreign('id_akun')->references('id_akun')->on('akun');
             $table->timestamps();
         });
     }
