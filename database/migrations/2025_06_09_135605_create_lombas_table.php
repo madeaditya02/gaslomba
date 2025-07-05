@@ -21,6 +21,8 @@ return new class extends Migration
             // $table->string('link_pendaftaran');
             $table->string('pamflet_perlombaan');
             $table->string('rekening');
+            $table->foreignId('id_penyelenggara');
+            $table->foreign('id_penyelenggara')->references('id_penyelenggara')->on('penyelenggara');
             $table->timestamps();
         });
     }

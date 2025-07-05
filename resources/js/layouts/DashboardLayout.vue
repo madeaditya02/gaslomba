@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import Sidebar from '@/components/Sidebar.vue';
 import { ref } from "vue";
+document.body.classList.remove('main')
 const show = ref(false)
+document.body.classList.add('dashboard')
 </script>
 <template>
   <Sidebar :show="show" @close="show = false" />
-  <div :class="'pl-0 lg:pl-80'">
+  <div :class="'pl-0 lg:pl-80 min-h-screen'">
     <div class="px-8 py-10">
       <div class="mb-4 lg:hidden">
         <button class="cursor-pointer" @click="show = true">

@@ -21,4 +21,14 @@ class Peserta extends Model
     {
         return $this->belongsToMany(pendaftaran::class, 'peserta_pendaftaran', 'id_peserta', 'id_pendaftaran');
     }
+
+    /**
+     * Get the user that owns the Peserta
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_akun', 'id_akun');
+    }
 }
