@@ -188,3 +188,7 @@ body.dashboard {
 .button-white {
     @apply bg-white border-slate-400 text-slate-900 hover:bg-slate-100 focus:ring-white focus-visible:ring-white;
 }
+.bg-silver.disabled,
+.bg-silver:disabled {
+    @apply !opacity-75;
+}
