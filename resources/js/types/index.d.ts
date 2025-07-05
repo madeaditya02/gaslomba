@@ -60,6 +60,13 @@ export type Lomba = {
     tingkatan: Tingkatan[],
     kategori: Kategori[],
     deskripsi: string,
+    rekening: string,
+    cabang_lomba: {
+        id_cablom: string,
+        nama_cablom: string,
+        jumlah_anggota: number,
+        biaya: number,
+    }[]
 }
 
 export interface User {
