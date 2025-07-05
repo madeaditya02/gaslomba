@@ -21,6 +21,7 @@ class LombaResource extends JsonResource
             'tempat_perlombaan' => $this->tempat_perlombaan,
             'pamflet_perlombaan' => $this->pamflet_perlombaan,
             'nama_penyelenggara' => $this->penyelenggara->nama_penyelenggara,
+            'cabang_lomba' => $this->cabang_lomba->select(['id_cablom', 'nama_cablom', 'jumlah_anggota', 'biaya']),
             'range_harga' => [
                 $this->cabang_lomba->pluck('biaya')->min(),
                 $this->cabang_lomba->pluck('biaya')->max(),
@@ -29,6 +30,7 @@ class LombaResource extends JsonResource
             'tingkatan' => $this->cabang_lomba->pluck('tingkatan')->flatten()->unique('id_tingkatan')->values()->select(['id_tingkatan','nama_tingkatan']),
             'kategori' => $this->jenis_perlombaan->select(['id_kategori', 'nama_kategori']),
             'deskripsi' => $this->deskripsi,
+            'rekening' => $this->rekening,
             // 'peserta' => $this->cabang_lomba->pluck('peserta')
         ];
     }

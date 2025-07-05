@@ -59,7 +59,11 @@ console.log(props.lomba)
                         <h1 class="mt-5 text-blue-950 font-semibold lg:text-xl md:text-sm text-md">Diselenggarakan Oleh
                             {{ lomba.nama_penyelenggara }}</h1>
                         <div class="flex justify-end">
-                            <Button class="text-white px-12 lg:mt-10 md:mt-4 mt-5 mb-5">Daftar Sekarang</Button>
+                            <Button class="text-white px-12 lg:mt-10 md:mt-4 mt-5 mb-5" as-child>
+                                <Link :href="`/lomba/${lomba.id_lomba}/daftar`">
+                                Daftar Sekarang
+                                </Link>
+                            </Button>
                         </div>
                     </div>
                 </div>

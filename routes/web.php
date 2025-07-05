@@ -16,6 +16,8 @@ Route::get('dashboard', function () {
 
 Route::get('/explore', [MainController::class, 'explore'])->name('explore');
 Route::get('/lomba/{id}', [MainController::class, 'details'])->name('details');
+Route::get('/lomba/{id}/daftar', [MainController::class, 'daftar'])->middleware('auth')->name('daftar_lomba');
+Route::post('/lomba/{id}/daftar', [MainController::class, 'submitDaftar'])->middleware('auth')->name('submit_daftar');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
