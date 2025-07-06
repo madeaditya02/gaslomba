@@ -25,6 +25,7 @@ class PesertaFactory extends Factory
             // 'email' => fake()->unique()->safeEmail(),
             'no_telepon' => fake()->phoneNumber(),
             'tingkatan' => $tingkatan,
+            'profile_picture' => asset('/storage/profile-picture/adit.png'),
             // 'password' => Hash::make('password'),
             'asal_instansi' => $tingkatan == 'sma' ? 'SMA Negeri 1 Denpasar' : ($tingkatan == 'mahasiswa' ? 'Universitas Udayana' : null),
             'kode_identitas' => $tingkatan == 'sma' ? "1211980$num" : ($tingkatan == 'mahasiswa' ? "23085610$num" : fake()->nik())

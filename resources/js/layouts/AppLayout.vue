@@ -4,6 +4,7 @@ import { ref, onMounted } from 'vue'
 import { assertIsNode } from "@/lib/utils";
 const showNav = ref(false)
 const scrolled = ref(false)
+document.body.classList.remove('dashboard')
 document.body.classList.add('main')
 scrolled.value = window.scrollY > 0
 document.addEventListener('scroll', () => {
@@ -56,33 +57,41 @@ onMounted(() => {
                 <slot />
             </div>
             <div class="md:px-8">
-                <div class="md:w-[1200px] w-full max-w-full md:h-[250px] bg-silver flex flex-col md:items-center md:justify-between md:mx-auto py-8 md:mt-10 md:mb-20 md:rounded-lg shadow-lg md:gap-10 gap-10 md:px-15 px-8">
+                <div
+                    class="md:w-[1200px] w-full max-w-full md:h-[250px] bg-silver flex flex-col md:items-center md:justify-between md:mx-auto py-8 md:mt-10 md:mb-20 md:rounded-lg shadow-lg md:gap-10 gap-10 md:px-15 px-8">
                     <div class="flex md:flex-row flex-col md:items-center justify-between w-full gap-10">
                         <div class="flex flex-col md:gap-10 gap-7">
                             <Link href="/">
-                                <img src="/assets/iconfooter.png" alt="" class="md:w-36">
+                            <img src="/assets/iconfooter.png" alt="" class="md:w-36">
                             </Link>
                             <div class="flex flex-row gap-5">
                                 <Link href="facebook.com">
-                                    <img src="/assets/facebook.png" alt="" class="md:w-8 w-9">
+                                <img src="/assets/facebook.png" alt="" class="md:w-8 w-9">
                                 </Link>
                                 <Link href="whatsapp.com">
-                                    <img src="/assets/wa.png" alt="" class="md:w-8 w-9">
+                                <img src="/assets/wa.png" alt="" class="md:w-8 w-9">
                                 </Link>
                                 <Link href="instagram.com">
-                                    <img src="/assets/ig.png" alt="" class="md:w-8 w-9">
+                                <img src="/assets/ig.png" alt="" class="md:w-8 w-9">
                                 </Link>
                             </div>
                         </div>
                         <div class="flex flex-col gap-4">
-                            <Link href="/" class="text-blue-950 hover:text-blue-700 font-semibold md:text-lg text-xl">Home</Link>
-                            <Link href="/explore" class="text-blue-950 hover:text-blue-700 font-semibold md:text-lg text-xl">Explore</Link>
-                            <Link href="/register" class="text-blue-950 hover:text-blue-700 font-semibold md:text-lg text-xl">Daftar</Link>
+                            <Link href="/" class="text-blue-950 hover:text-blue-700 font-semibold md:text-lg text-xl">
+                            Home</Link>
+                            <Link href="/explore"
+                                class="text-blue-950 hover:text-blue-700 font-semibold md:text-lg text-xl">Explore
+                            </Link>
+                            <Link href="/register"
+                                class="text-blue-950 hover:text-blue-700 font-semibold md:text-lg text-xl">Daftar</Link>
                         </div>
                         <div class="flex flex-col gap-4 pr-5">
-                            <Link href="/" class="text-blue-950 hover:text-blue-700 font-semibold md:text-lg text-xl">Terms</Link>
-                            <Link href="/" class="text-blue-950 hover:text-blue-700 font-semibold md:text-lg text-xl">Privacy</Link>
-                            <Link href="/" class="text-blue-950 hover:text-blue-700 font-semibold md:text-lg text-xl">Cookies</Link>
+                            <Link href="/" class="text-blue-950 hover:text-blue-700 font-semibold md:text-lg text-xl">
+                            Terms</Link>
+                            <Link href="/" class="text-blue-950 hover:text-blue-700 font-semibold md:text-lg text-xl">
+                            Privacy</Link>
+                            <Link href="/" class="text-blue-950 hover:text-blue-700 font-semibold md:text-lg text-xl">
+                            Cookies</Link>
                         </div>
                     </div>
                     <div class="border-t border-blue-950 w-full flex items-center justify-center">

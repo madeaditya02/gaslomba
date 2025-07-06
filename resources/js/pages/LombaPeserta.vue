@@ -1,15 +1,26 @@
 <script setup lang="ts">
 import DashboardLayout from '@/layouts/DashboardLayout.vue';
 import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
+import Badge from '@/components/ui/badge/Badge.vue';
+import { badgeType } from '@/lib/utils';
+import { Pendaftaran } from '@/types';
+import { ref } from 'vue';
+import CustomModal from '@/components/CustomModal.vue';
+import { router } from "@inertiajs/vue3";
+
+defineProps<{
+    perlombaan: Pendaftaran[]
+}>()
+
+const selected = ref<Pendaftaran>()
 </script>
 
 <template>
@@ -17,50 +28,42 @@ import { Button } from '@/components/ui/button';
         <div class="border bg-white border-gray-300 rounded-md px-5 py-3">
             <h1 class="text-slate-800 font-semibold md:text-xl text-md">Selamat Datang, I Made Aditya Koding !</h1>
         </div>
-        <Table class="mt-10 border border-gray-300 bg-white rounded-md">
-            <TableCaption></TableCaption>
+        <Table class="mt-10 border border-gray-300 bg-white rounded-md" v-if="perlombaan.length > 0">
+            <!-- <TableCaption></TableCaption> -->
             <TableHeader>
-            <TableRow class="border-b border-gray-300">
-                <TableHead class="text-slate-800 w-[126px] text-center py-4">Nama Perlombaan</TableHead>
-                <TableHead class="text-slate-800 w-[126px] text-center py-4">Tanggal Pendaftaran</TableHead>
-                <TableHead class="text-slate-800 w-[126px] text-center py-4">Cabang Lomba</TableHead>
-                <TableHead class="text-slate-800 w-[126px] text-center py-4">Anggota</TableHead>
-                <TableHead class="text-slate-800 w-[126px] text-center py-4">Status Berkas</TableHead>
-                <TableHead class="text-slate-800 w-[126px] text-center py-4"></TableHead>
-            </TableRow>
+                <TableRow class="border-b border-gray-300">
+                    <TableHead class="text-slate-800 text-center py-4">Nama Perlombaan</TableHead>
+                    <TableHead class="text-slate-800 text-center py-4">Tanggal Pendaftaran</TableHead>
+                    <TableHead class="text-slate-800 text-center py-4">Cabang Lomba</TableHead>
+                    <TableHead class="text-slate-800 text-center py-4">Anggota</TableHead>
+                    <TableHead class="text-slate-800 text-center py-4">Status Berkas</TableHead>
+                    <TableHead class="text-slate-800 text-center py-4"></TableHead>
+                </TableRow>
             </TableHeader>
             <TableBody>
-            <TableRow class="border-b border-gray-300">
-                <TableCell class="text-slate-800 text-center">Invention Udayana 2025</TableCell>
-                <TableCell class="text-slate-800 text-center">1 MEI 2025</TableCell>
-                <TableCell class="text-slate-800 text-center">UIUX Design</TableCell>
-                <TableCell class="text-slate-800 text-center">I Made Aditya,...</TableCell>
-                <TableCell class="flex items-center justify-center">
-                    <h1 class="bg-[#FF9500] text-center py-2 px-5 w-[100px] rounded-md">Pending</h1>
-                </TableCell>
-            </TableRow>
-            <TableRow class="border-b border-gray-300">
-                <TableCell class="text-slate-800 text-center">Invention Udayana 2024</TableCell>
-                <TableCell class="text-slate-800 text-center">1 MEI 2024</TableCell>
-                <TableCell class="text-slate-800 text-center">KTI</TableCell>
-                <TableCell class="text-slate-800 text-center">I Made Aditya,...</TableCell>
-                <TableCell class="flex items-center justify-center">
-                    <h1 class="bg-[#BD2915] text-center py-2 px-5 w-[100px] rounded-md">Ditolak</h1>
-                </TableCell>
-                <TableCell class="text-center">
-                    <Button class="text-white bg-[#012B89]">Catatan</Button>
-                </TableCell>
-            </TableRow>
-            <TableRow class="border-b border-gray-300">
-                <TableCell class="text-slate-800 text-center">Invention Udayana 2023</TableCell>
-                <TableCell class="text-slate-800 text-center">1 MEI 2023</TableCell>
-                <TableCell class="text-slate-800 text-center">KTI</TableCell>
-                <TableCell class="text-slate-800 text-center">I Made Aditya,...</TableCell>
-                <TableCell class="flex items-center justify-center">
-                    <h1 class="bg-[#57DC46] text-center py-2 px-5 w-[100px] rounded-md">Diterima</h1>
-                </TableCell>
-            </TableRow>
+                <TableRow class="border-b border-gray-300" v-for="lomba in perlombaan" :key="lomba.id_lomba">
+                    <TableCell class="text-slate-800 text-center">{{ lomba.nama_perlombaan }}</TableCell>
+                    <TableCell class="text-slate-800 text-center">{{ lomba.tanggal_perlombaan_string[0] }} - {{
+                        lomba.tanggal_perlombaan_string[1] }}</TableCell>
+                    <TableCell class="text-slate-800 text-center">{{ lomba.cabang_lomba }}</TableCell>
+                    <TableCell class="text-slate-800 text-center">
+                        {{lomba.anggota.map(anggota => anggota.nama).join(', ')}}
+                    </TableCell>
+                    <TableCell>
+                        <Badge :variant="badgeType(lomba.status)">{{ lomba.status }}</Badge>
+                    </TableCell>
+                    <TableCell>
+                        <Button v-if="lomba.status == 'Rejected'" @click="selected = lomba">Catatan</Button>
+                    </TableCell>
+                </TableRow>
             </TableBody>
         </Table>
+        <h2 class="text-2xl font-medium text-center mt-10" v-else>Tidak ada perlombaan yang anda ikuti</h2>
+
+        <CustomModal :open="!!selected" @update-open="opened => selected = (opened ? selected : undefined)"
+            title="Catatan Panitia" confirm-button="Perbaiki Berkas"
+            @confirm="router.get(`/lomba/perbaikan/${selected?.id_pendaftaran}`)">
+            <p class="mt-4 text-lg">{{ selected?.catatan_panitia }}</p>
+        </CustomModal>
     </DashboardLayout>
 </template>

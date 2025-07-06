@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('nomor_telepon');
             $table->string('provinsi')->nullable();
+            $table->string('asal_instansi');
+            $table->string('profile_picture');
             $table->foreignId('id_akun')->nullable();
             $table->foreign('id_akun')->references('id_akun')->on('akun');
             $table->rememberToken();

@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $users = User::factory(2)->create();
         $penyelenggara = Penyelenggara::factory()->create([
             'nama_penyelenggara' => 'HIMAIF Udayana',
+            'profile_picture' => asset('/storage/profile-picture/himaif.png')
         ]);
         $user1->penyelenggara()->save($penyelenggara);
 
@@ -34,11 +35,20 @@ class DatabaseSeeder extends Seeder
         $umum = Tingkatan::create(['id_tingkatan' => 'umum', 'nama_tingkatan' => 'Umum']);
         $kategoriIT = JenisPerlombaan::create(['id_kategori' => 'it', 'nama_kategori' => 'IT']);
         $kategoriDesign = JenisPerlombaan::create(['id_kategori' => 'design', 'nama_kategori' => 'Design']);
-        $peserta1 = Peserta::factory()->create();
+        $peserta1 = Peserta::factory([
+            'tingkatan' => 'mahasiswa',
+            'kode_identitas' => '2308561000',
+        ])->create();
         $user2->peserta()->save($peserta1);
-        $peserta2 = Peserta::factory()->create();
+        $peserta2 = Peserta::factory([
+            'tingkatan' => 'mahasiswa',
+            'kode_identitas' => '2308561001',
+        ])->create();
         $users[0]->peserta()->save($peserta2);
-        $peserta3 = Peserta::factory()->create();
+        $peserta3 = Peserta::factory([
+            'tingkatan' => 'umum',
+            'kode_identitas' => '123456789',
+        ])->create();
         $users[1]->peserta()->save($peserta3);
         $lomba = Lomba::create([
             'nama_perlombaan' => 'INVENTION Udayana 2025',
@@ -53,10 +63,10 @@ class DatabaseSeeder extends Seeder
         $lomba->jenis_perlombaan()->attach([$kategoriIT, $kategoriDesign]);
         $cablom1 = $lomba->cabang_lomba()->create([
             'nama_cablom' => 'Poster Digital',
-            'jumlah_anggota' => 1,
+            'jumlah_anggota' => 3,
             'biaya' => 40000,
         ]);
-        $cablom1->tingkatan()->attach($sma);
+        $cablom1->tingkatan()->attach([$sma, $mhs]);
         $cablom2 = $lomba->cabang_lomba()->create([
             'nama_cablom' => 'UI/UX Design',
             'jumlah_anggota' => 3,
@@ -68,8 +78,8 @@ class DatabaseSeeder extends Seeder
             'bukti_pembayaran' => 'bukti.pdf',
             'status' => 'Accepted',
         ]);
-        $pendaftaran->peserta()->attach($peserta1->id, ['berkas_identitas' => 'berkas.pdf', 'role' => 'Ketua']);
-        $pendaftaran->peserta()->attach($peserta2->id, ['berkas_identitas' => 'berkas.pdf', 'role' => 'Anggota']);
-        $pendaftaran->peserta()->attach($peserta3->id, ['berkas_identitas' => 'berkas.pdf', 'role' => 'Anggota']);
+        $pendaftaran->peserta()->attach($peserta1->id_peserta, ['berkas_identitas' => 'berkas.pdf', 'role' => 'Ketua']);
+        $pendaftaran->peserta()->attach($peserta2->id_peserta, ['berkas_identitas' => 'berkas.pdf', 'role' => 'Anggota']);
+        $pendaftaran->peserta()->attach($peserta3->id_peserta, ['berkas_identitas' => 'berkas.pdf', 'role' => 'Anggota']);
     }
 }

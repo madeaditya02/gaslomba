@@ -20,7 +20,9 @@ class PenyelenggaraFactory extends Factory
             'nama_penyelenggara' => fake()->name(),
             'provinsi' => 'Bali',
             'nomor_telepon' => '08973891362',
+            'asal_instansi' => 'Universitas Udayana',
             'alamat' => 'Kampus Udayana Bukit Jimbaran',
+            'profile_picture' => asset('/storage/profile-picture/adit.png'),
         ];
     }
 }

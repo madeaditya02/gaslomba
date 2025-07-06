@@ -20,6 +20,7 @@ class PenyelenggaraResource extends JsonResource
             'nama_penyelenggara' => $this->nama_penyelenggara,
             'alamat' => $this->alamat,
             'nomor_telepon' => $this->nomor_telepon,
+            'asal_instansi' => $this->asal_instansi,
             'provinsi' => $this->provinsi,
             'profile_picture' => $this->profile_picture,
             'email' => $this->user->email,

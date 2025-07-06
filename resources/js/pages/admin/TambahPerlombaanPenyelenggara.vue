@@ -41,22 +41,16 @@
                         <!-- Nama Perlombaan -->
                         <div>
                             <label class="mb-2 block text-sm font-medium text-gray-700">Nama Perlombaan</label>
-                            <input
-                                v-model="formData.namaPerlombaan"
-                                type="text"
-                                placeholder="Masukkan Nama Perlombaan"
-                                class="w-full rounded-md border border-gray-300 px-3 py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                            />
+                            <input v-model="formData.namaPerlombaan" type="text" placeholder="Masukkan Nama Perlombaan"
+                                class="w-full rounded-md border border-gray-300 px-3 py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
                         </div>
 
                         <!-- Kategori -->
                         <div>
                             <label class="mb-2 block text-sm font-medium text-gray-700">Kategori</label>
                             <div class="relative">
-                                <select
-                                    v-model="formData.kategori"
-                                    class="w-full appearance-none rounded-md border px-3 py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                >
+                                <select v-model="formData.kategori"
+                                    class="w-full appearance-none rounded-md border px-3 py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                                     <option value="">Pilih Kategori Lomba</option>
                                     <option value="teknologi">Teknologi</option>
                                     <option value="seni">Seni</option>
@@ -78,7 +72,8 @@
                         <div>
                             <label class="mb-2 block text-sm font-medium text-gray-700">Pamflet Perlombaan</label>
                             <div class="rounded-md border-2 border-dashed border-gray-300 p-4 text-center">
-                                <input type="file" @change="handleFileUpload" class="hidden" ref="fileInput" accept="image/*" />
+                                <input type="file" @change="handleFileUpload" class="hidden" ref="fileInput"
+                                    accept="image/*" />
                                 <button @click="$refs.fileInput.click()" class="text-gray-500 hover:text-gray-700">
                                     <i class="fas fa-upload mb-2"></i>
                                     <p class="text-sm">Upload Pamflet Perlombaan</p>
@@ -91,31 +86,21 @@
                         <!-- Tempat Perlombaan -->
                         <div>
                             <label class="mb-2 block text-sm font-medium text-gray-700">Tempat Perlombaan</label>
-                            <input
-                                v-model="formData.tempatPerlombaan"
-                                type="text"
+                            <input v-model="formData.tempatPerlombaan" type="text"
                                 placeholder="Masukkan Lokasi Perlombaan"
-                                class="w-full rounded-md border px-3 py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                            />
+                                class="w-full rounded-md border px-3 py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
                         </div>
 
                         <!-- Tanggal Perlombaan -->
                         <div>
                             <label class="mb-2 block text-sm font-medium text-gray-700">Tanggal Perlombaan</label>
                             <div class="grid grid-cols-2 gap-2">
-                                <input
-                                    v-model="formData.tanggalMulai"
-                                    type="date"
-                                    placeholder="Masukkan Tanggal Mulai"
-                                    class="rounded-md border px-3 py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                />
+                                <input v-model="formData.tanggalMulai" type="date" placeholder="Masukkan Tanggal Mulai"
+                                    class="rounded-md border px-3 py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
                                 <span class="flex items-center justify-center">—</span>
-                                <input
-                                    v-model="formData.tanggalBerakhir"
-                                    type="date"
+                                <input v-model="formData.tanggalBerakhir" type="date"
                                     placeholder="Masukkan Tanggal Berakhir"
-                                    class="rounded-md border px-3 py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                />
+                                    class="rounded-md border px-3 py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
                             </div>
                         </div>
                     </div>
@@ -123,12 +108,8 @@
                     <!-- Informasi Rekening -->
                     <div class="mb-6">
                         <label class="mb-2 block text-sm font-medium text-gray-700">Informasi Rekening</label>
-                        <input
-                            v-model="formData.informasiRekening"
-                            type="text"
-                            placeholder="Contoh: BNI: 1234567890"
-                            class="w-full rounded-md border px-3 py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                        />
+                        <input v-model="formData.informasiRekening" type="text" placeholder="Contoh: BNI: 1234567890"
+                            class="w-full rounded-md border px-3 py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
                     </div>
 
                     <!-- Deskripsi -->
@@ -140,10 +121,12 @@
                                 <button class="rounded p-1 hover:bg-gray-200"><i class="fas fa-bold"></i></button>
                                 <button class="rounded p-1 hover:bg-gray-200"><i class="fas fa-italic"></i></button>
                                 <button class="rounded p-1 hover:bg-gray-200"><i class="fas fa-underline"></i></button>
-                                <button class="rounded p-1 hover:bg-gray-200"><i class="fas fa-strikethrough"></i></button>
+                                <button class="rounded p-1 hover:bg-gray-200"><i
+                                        class="fas fa-strikethrough"></i></button>
                                 <div class="h-4 w-px bg-gray-300"></div>
                                 <button class="rounded p-1 hover:bg-gray-200"><i class="fas fa-align-left"></i></button>
-                                <button class="rounded p-1 hover:bg-gray-200"><i class="fas fa-align-center"></i></button>
+                                <button class="rounded p-1 hover:bg-gray-200"><i
+                                        class="fas fa-align-center"></i></button>
                                 <button class="rounded p-1 hover:bg-gray-200"><i class="fas fa-list-ul"></i></button>
                                 <button class="rounded p-1 hover:bg-gray-200"><i class="fas fa-list-ol"></i></button>
                                 <div class="h-4 w-px bg-gray-300"></div>
@@ -158,12 +141,9 @@
                                 </div>
                             </div>
                             <!-- Text Area -->
-                            <textarea
-                                v-model="formData.deskripsi"
-                                placeholder="Masukkan Deskripsi atau Caption Lebih Lengkap"
-                                rows="6"
-                                class="w-full resize-none px-3 py-2 focus:outline-none"
-                            ></textarea>
+                            <textarea v-model="formData.deskripsi"
+                                placeholder="Masukkan Deskripsi atau Caption Lebih Lengkap" rows="6"
+                                class="w-full resize-none px-3 py-2 focus:outline-none"></textarea>
                         </div>
                     </div>
                 </div>
@@ -172,7 +152,8 @@
                 <div class="mb-8">
                     <div class="mb-6 flex items-center justify-between">
                         <h2 class="text-lg font-semibold text-gray-800">Cabang Lomba</h2>
-                        <button @click="addCabangLomba" class="text-balck flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 hover:bg-blue-700">
+                        <button @click="addCabangLomba"
+                            class="text-balck flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 hover:bg-blue-700">
                             <i class="fas fa-plus"></i>
                             Tambah Cablom
                         </button>
@@ -184,22 +165,16 @@
                             <!-- Nama Cabang Lomba -->
                             <div>
                                 <label class="mb-2 block text-sm font-medium text-gray-700">Nama Cabang Lomba</label>
-                                <input
-                                    v-model="cabang.nama"
-                                    type="text"
-                                    placeholder="Masukkan Nama Perlombaan"
-                                    class="text-blackpx-3 w-full rounded-md border py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                />
+                                <input v-model="cabang.nama" type="text" placeholder="Masukkan Nama Perlombaan"
+                                    class="text-blackpx-3 w-full rounded-md border py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
                             </div>
 
                             <!-- Tingkatan -->
                             <div>
                                 <label class="mb-2 block text-sm font-medium text-gray-700">Tingkatan</label>
                                 <div class="relative">
-                                    <select
-                                        v-model="cabang.tingkatan"
-                                        class="w-full appearance-none rounded-md border px-3 py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                    >
+                                    <select v-model="cabang.tingkatan"
+                                        class="w-full appearance-none rounded-md border px-3 py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                                         <option value="">Pilih Tingkatan</option>
                                         <option value="sma">SMA</option>
                                         <option value="mahasiswa">Mahasiswa</option>
@@ -212,31 +187,26 @@
                                 <!-- Tags -->
                                 <div class="mt-2 flex gap-2">
                                     <span class="rounded-full bg-blue-100 px-2 py-1 text-xs text-blue-800">SMA</span>
-                                    <span class="rounded-full bg-blue-100 px-2 py-1 text-xs text-blue-800">Mahasiswa</span>
+                                    <span
+                                        class="rounded-full bg-blue-100 px-2 py-1 text-xs text-blue-800">Mahasiswa</span>
                                 </div>
                             </div>
 
                             <!-- Jumlah Maksimal Anggota -->
                             <div>
-                                <label class="mb-2 block text-sm font-medium text-gray-700">Jumlah Maksimal Anggota</label>
-                                <input
-                                    v-model="cabang.jumlahMaksimal"
-                                    type="number"
+                                <label class="mb-2 block text-sm font-medium text-gray-700">Jumlah Maksimal
+                                    Anggota</label>
+                                <input v-model="cabang.jumlahMaksimal" type="number"
                                     placeholder="Jumlah Anggota termasuk Ketua"
-                                    class="w-full rounded-md border px-3 py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                />
+                                    class="w-full rounded-md border px-3 py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
                             </div>
                         </div>
 
                         <!-- Biaya Pendaftaran -->
                         <div class="mb-4">
                             <label class="mb-2 block text-sm font-medium text-gray-700">Biaya Pendaftaran</label>
-                            <input
-                                v-model="cabang.biayaPendaftaran"
-                                type="text"
-                                placeholder="Masukkan Nama Perlombaan"
-                                class="w-full rounded-md border px-3 py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                            />
+                            <input v-model="cabang.biayaPendaftaran" type="text" placeholder="Masukkan Nama Perlombaan"
+                                class="w-full rounded-md border px-3 py-2 text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
                         </div>
 
                         <!-- Remove button for multiple cabang lomba -->
@@ -253,7 +223,8 @@
 
                 <!-- Submit Button -->
                 <div class="flex justify-center">
-                    <button @click="submitForm" class="rounded-md bg-[#001f5f] px-8 py-3 font-semibold text-white hover:bg-[#002f7f]">SIMPAN</button>
+                    <button @click="submitForm"
+                        class="rounded-md bg-[#001f5f] px-8 py-3 font-semibold text-white hover:bg-[#002f7f]">SIMPAN</button>
                 </div>
             </div>
         </div>

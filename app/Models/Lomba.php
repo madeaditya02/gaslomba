@@ -41,4 +41,12 @@ class Lomba extends Model
     {
         return $this->hasMany(CabangLomba::class, 'id_lomba', 'id_lomba');
     }
+
+    protected function casts(): array
+    {
+        return [
+            'tanggal_mulai' => 'datetime',
+            'tanggal_selesai' => 'datetime',
+        ];
+    }
 }

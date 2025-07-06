@@ -29,6 +29,6 @@ class Pendaftaran extends Model
      */
     public function peserta()
     {
-        return $this->belongsToMany(peserta::class, 'peserta_pendaftaran', 'id_pendaftaran', 'id_peserta')->withPivot('berkas_identitas', 'role');
+        return $this->belongsToMany(peserta::class, 'peserta_pendaftaran', 'id_pendaftaran', 'id_peserta')->orderBy('pivot_role', 'desc')->withPivot('berkas_identitas', 'role');
     }
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('jumlah_anggota');
             $table->integer('biaya');
             $table->foreignId('id_lomba');
-            $table->foreign('id_lomba')->references('id_lomba')->on('lomba');
+            $table->foreign('id_lomba')->references('id_lomba')->on('lomba')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

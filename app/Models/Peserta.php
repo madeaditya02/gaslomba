@@ -11,6 +11,7 @@ class Peserta extends Model
     use HasFactory;
 
     protected $table = 'peserta', $primaryKey = 'id_peserta', $guarded = [];
+    protected $with = ['jenjang'];
 
     /**
      * The pendaftaran that belong to the Peserta
@@ -30,5 +31,15 @@ class Peserta extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'id_akun', 'id_akun');
+    }
+
+    /**
+     * Get the tingkatan that owns the Peserta
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function jenjang()
+    {
+        return $this->belongsTo(Tingkatan::class, 'tingkatan', 'id_tingkatan');
     }
 }

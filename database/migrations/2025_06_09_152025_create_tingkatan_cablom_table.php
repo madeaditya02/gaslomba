@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('tingkatan_cablom', function (Blueprint $table) {
             $table->string('id_tingkatan');
             $table->foreignId('id_cablom');
-            $table->foreign('id_tingkatan')->references('id_tingkatan')->on('tingkatan');
-            $table->foreign('id_cablom')->references('id_cablom')->on('cabang_lomba');
+            $table->foreign('id_tingkatan')->references('id_tingkatan')->on('tingkatan')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_cablom')->references('id_cablom')->on('cabang_lomba')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

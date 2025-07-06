@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum('status', ['Pending', 'Rejected', 'Accepted']);
             $table->text('catatan_panitia')->nullable();
             $table->foreignId('id_cablom');
-            $table->foreign('id_cablom')->references('id_cablom')->on('cabang_lomba');
+            $table->foreign('id_cablom')->references('id_cablom')->on('cabang_lomba')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

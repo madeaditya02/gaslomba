@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('kategori_lomba', function (Blueprint $table) {
             $table->foreignId('id_lomba');
             $table->string('id_kategori');
-            $table->foreign('id_lomba')->references('id_lomba')->on('lomba');
-            $table->foreign('id_kategori')->references('id_kategori')->on('jenis_perlombaan');
+            $table->foreign('id_lomba')->references('id_lomba')->on('lomba')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_kategori')->references('id_kategori')->on('jenis_perlombaan')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

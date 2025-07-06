@@ -1,11 +1,37 @@
 <script setup lang="ts">
 import Sidebar from '@/components/Sidebar.vue';
-import { ref } from "vue";
+import { usePage } from '@inertiajs/vue3';
+import { onMounted, ref } from "vue";
+import { toast, Toaster } from 'vue-sonner';
+import 'vue-sonner/style.css'
+
 document.body.classList.remove('main')
 const show = ref(false)
 document.body.classList.add('dashboard')
+
+const page = usePage()
+onMounted(() => {
+  if (page.props.alert) {
+    console.log(page.props.alert.type);
+    if (page.props.alert.type == 'success') {
+      toast.success(page.props.alert.title, {
+        description: page.props.alert.text
+      })
+    } else if (page.props.alert.type == 'error') {
+      toast.error(page.props.alert.title, {
+        description: page.props.alert.text
+      })
+    }
+    else {
+      toast(page.props.alert.title, {
+        description: page.props.alert.text
+      })
+    }
+  }
+})
 </script>
 <template>
+  <Toaster rich-colors position="top-right" />
   <Sidebar :show="show" @close="show = false" />
   <div :class="'pl-0 lg:pl-80 min-h-screen'">
     <div class="px-8 py-10">

@@ -21,6 +21,7 @@ export type AppPageProps<T extends Record<string, unknown> = Record<string, unkn
     name: string;
     quote: { message: string; author: string };
     auth: Auth;
+    alert: any;
     ziggy: Config & { location: string };
     sidebarOpen: boolean;
 };
@@ -30,17 +31,19 @@ export type Penyelenggara = {
     nama_penyelenggara: number,
     alamat: string,
     nomor_telepon: string,
+    asal_instansi: string,
     provinsi: string,
-    profile: string,
+    profile_picture: string,
 }
-export type Peserta = {
+export interface Peserta {
     id_peserta: number,
     nama: number,
     kode_identitas: string,
     no_telepon: string,
     tingkatan: string,
+    id_tingkatan: string,
     asal_instansi: string,
-    profile: string,
+    profile_picture: string,
 }
 export type Tingkatan = {
     id_tingkatan: string,
@@ -50,15 +53,18 @@ export type Kategori = {
     id_kategori: string,
     nama_kategori: string,
 }
-export type Lomba = {
+export interface Lomba {
     id_lomba: number,
     nama_perlombaan: string,
     tempat_perlombaan: string,
     pamflet_perlombaan: string,
     nama_penyelenggara: string,
     range_harga: [number, number],
+    tanggal: [string, string],
+    tanggal_string: [string, string],
     tingkatan: Tingkatan[],
     kategori: Kategori[],
+    status: string,
     deskripsi: string,
     rekening: string,
     cabang_lomba: {
@@ -67,6 +73,37 @@ export type Lomba = {
         jumlah_anggota: number,
         biaya: number,
     }[]
+}
+export interface LombaFull extends Lomba {
+    cabang_lomba: {
+        id_cablom: string,
+        nama_cablom: string,
+        jumlah_anggota: number,
+        biaya: number,
+        tingkatan: Tingkatan[]
+    }[]
+}
+export interface PesertaLomba extends Peserta {
+    pivot: {
+        berkas_identitas: string,
+        role: string,
+    }
+}
+export type Pendaftaran = {
+    id_pendaftaran: number,
+    id_lomba: number,
+    nama_perlombaan: string,
+    tempat_perlombaan: string,
+    pamflet_perlombaan: string,
+    nama_penyelenggara: string,
+    cablom: string,
+    cabang_lomba: string,
+    status: string,
+    catatan_panitia: string,
+    bukti_pembayaran: string,
+    tanggal_perlombaan: [string, string],
+    tanggal_perlombaan_string: [string, string],
+    anggota: PesertaLomba[]
 }
 
 export interface User {

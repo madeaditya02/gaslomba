@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('id_pendaftaran');
             $table->string('berkas_identitas');
             $table->enum('role', ['Ketua', 'Anggota']);
-            $table->foreign('id_peserta')->references('id_peserta')->on('peserta');
-            $table->foreign('id_pendaftaran')->references('id')->on('pendaftaran');
+            $table->foreign('id_peserta')->references('id_peserta')->on('peserta')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_pendaftaran')->references('id')->on('pendaftaran')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

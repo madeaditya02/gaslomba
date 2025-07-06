@@ -21,9 +21,15 @@ class PendaftaranResource extends JsonResource
                 $this->cabang_lomba->lomba->tanggal_mulai,
                 $this->cabang_lomba->lomba->tanggal_selesai,
             ],
+            'tanggal_perlombaan_string' => [
+                $this->cabang_lomba->lomba->tanggal_mulai->format('d M Y'),
+                $this->cabang_lomba->lomba->tanggal_selesai->format('d M Y'),
+            ],
+            'id_pendaftaran' => $this->id,
+            'cablom' => $this->cabang_lomba->id_cablom,
             'cabang_lomba' => $this->cabang_lomba->nama_cablom,
-            'anggota' => PesertaResource::collection($this->peserta()->wherePivot('role', 'Anggota')->get()),
-            'status' => $this->status_berkas,
+            'anggota' => $this->whenLoaded('peserta'),
+            'status' => $this->status,
             'catatan_panitia' => $this->catatan_panitia,
             'bukti_pembayaran' => $this->bukti_pembayaran,
         ];

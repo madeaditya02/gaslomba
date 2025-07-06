@@ -125,7 +125,7 @@ const formFilter = useForm({
                     </PaginationItem>
                 </template>
 
-                <PaginationEllipsis :index="4" class="text-white" />
+                <!-- <PaginationEllipsis :index="4" class="text-white" /> -->
 
                 <PaginationNext
                     class="px-3 py-1 rounded bg-silver hover:shadow-[0_0_20px_2px_rgba(59,130,246,0.5)] transition-shadow duration-300" />
