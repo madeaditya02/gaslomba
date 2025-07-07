@@ -83,7 +83,7 @@
                         <input type="text" :disabled="!formPeserta.tingkatan" v-model="formPeserta.identitas"
                             :placeholder="formPeserta.tingkatan ? `Masukkan ${jenisIdentitas}` : 'Pilih tingkatan terlebih dahulu'"
                             class="w-full min-w-0 flex-1 rounded-xl bg-gradient-to-b from-[#F3F3F3] to-[#C9C9C9] px-4 py-3 text-black placeholder-gray-500 focus:outline-none" />
-                        <InputError :message="formPeserta.errors.tingkatan" class="mt-1 font-medium" />
+                        <InputError :message="formPeserta.errors.identitas" class="mt-1 font-medium" />
                     </div>
 
                     <!-- Password -->
@@ -149,6 +149,15 @@
                         <input type="text" v-model="formPenyelenggara.alamat" placeholder="Masukkan Alamat"
                             class="w-full rounded-xl bg-gradient-to-b from-[#F3F3F3] to-[#C9C9C9] px-4 py-3 text-black placeholder:text-gray-500 focus:outline-none" />
                         <InputError :message="formPenyelenggara.errors.alamat" class="mt-1" />
+                    </div>
+
+                    <!-- Asal Instansi -->
+                    <div>
+                        <label class="mb-1 block font-semibold text-white">Asal Instansi</label>
+                        <input type="text" v-model="formPenyelenggara.asal_instansi"
+                            placeholder="Masukkan asal instansi"
+                            class="w-full rounded-xl bg-gradient-to-b from-[#F3F3F3] to-[#C9C9C9] px-4 py-3 text-black placeholder:text-gray-500 focus:outline-none" />
+                        <InputError :message="formPenyelenggara.errors.asal_instansi" class="mt-1" />
                     </div>
 
                     <!-- Password -->
@@ -217,6 +226,7 @@ const formPenyelenggara = useForm({
     email: '',
     nama_penyelenggara: '',
     alamat: '',
+    asal_instansi: '',
     nomor_telepon: '',
     provinsi: '',
     password: '',

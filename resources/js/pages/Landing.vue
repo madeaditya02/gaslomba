@@ -52,13 +52,14 @@ defineProps<{
 <style scoped>
 @font-face {
   font-family: 'Grobold';
-  src: url('/fonts/Grobold.ttf') format('truetype');
+  src: url('/assets/Grobold.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 .grobold-font {
   font-family: 'Grobold', sans-serif;
+  color: white;
   text-shadow: 0 0 10px rgba(255, 170, 1, 1);
 }
 </style>

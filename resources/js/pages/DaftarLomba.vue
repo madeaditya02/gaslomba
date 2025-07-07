@@ -123,13 +123,14 @@ onUpdated(() => {
             </div>
             <div class="row-start-4 col-span-2">
               <Label for="berkas" class="mb-2">Scan {{ jenisBerkas }}</Label>
-              <InputFile id="berkas" class="bg-silver" v-model="form.berkas" />
+              <InputFile accept="application/pdf" id="berkas" class="bg-silver" v-model="form.berkas" />
               <InputError :message="form.errors.berkas" />
             </div>
             <div class="row-start-5 col-span-2" v-if="(selectedCablom?.biaya ?? 0) > 0">
               <Label for="bukti_pembayaran" class="mb-2">Bukti Pembayaran</Label>
               <!-- <Input id="berkas" class="bg-silver" type="file" v-model="form.bukti_pembayaran" /> -->
-              <InputFile id="bukti_pembayaran" class="bg-silver" v-model="form.bukti_pembayaran" />
+              <InputFile accept="application/pdf" id="bukti_pembayaran" class="bg-silver"
+                v-model="form.bukti_pembayaran" />
               <InputError :message="form.errors.bukti_pembayaran" />
             </div>
           </div>
@@ -145,7 +146,8 @@ onUpdated(() => {
             </div>
             <div class="col-span-2">
               <Label for="berkas_anggota" class="mb-2">Scan {{ jenisBerkas }}</Label>
-              <InputFile id="berkas_anggota" class="bg-silver" v-model="form.berkas_anggota[i - 1]" />
+              <InputFile accept="application/pdf" id="berkas_anggota" class="bg-silver"
+                v-model="form.berkas_anggota[i - 1]" />
               <InputError v-if="banyakAnggota == i" :message="form.errors.berkas_anggota" />
             </div>
           </div>

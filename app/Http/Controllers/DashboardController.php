@@ -33,7 +33,7 @@ class DashboardController extends Controller
                 'nama' => ['required'],
                 'tingkatan' => ['required', 'exists:tingkatan,id_tingkatan'],
                 'kode' => ['required'],
-                'asal_instansi' => ['required'],
+                // 'asal_instansi' => ['required'],
                 'nomor_telepon' => ['required'],
             ]);
             $fileName = auth()->user()->peserta->profile_picture;

@@ -51,6 +51,7 @@ class RegisteredUserController extends Controller
                 'no_telepon' => $data['telpon'],
                 'tingkatan' => $data['tingkatan'],
                 'asal_instansi' => $data['instansi'],
+                'profile_picture' => asset('/storage/profile-picture/user.png')
             ]);
         } else if ($request->tipe == 'penyelenggara') {
             $data = $request->validate([
@@ -58,6 +59,7 @@ class RegisteredUserController extends Controller
                 'nama_penyelenggara' => 'required',
                 'nomor_telepon' => 'required',
                 'alamat' => 'required',
+                'asal_instansi' => 'required',
                 'password' => ['required', 'confirmed', Rules\Password::defaults()],
             ]);
             $user = User::create([
@@ -67,7 +69,9 @@ class RegisteredUserController extends Controller
             $user->penyelenggara()->create([
                 'nama_penyelenggara' => $data['nama_penyelenggara'],
                 'alamat' => $data['alamat'],
+                'asal_instansi' => $data['asal_instansi'],
                 'nomor_telepon' => $data['nomor_telepon'],
+                'profile_picture' => asset('/storage/profile-picture/user.png'),
             ]);
         }
 
