@@ -49,8 +49,13 @@ onMounted(() => {
                         :class="{ 'border-white': $page.url === '/explore' }">Explore
                     </Link>
                 </div>
-                <Link href="/register" class=" bg-primary text-white px-6 py-2 rounded-lg uppercase font-bold"
+                <Link href="/register" v-if="!$page.props.auth.user"
+                    class=" bg-primary text-white px-6 py-2 rounded-lg uppercase font-bold"
                     :class="{ 'hidden md:block': !showNav, 'block': showNav }">Daftar
+                </Link>
+                <Link href="/dashboard" v-if="$page.props.auth.user"
+                    class=" bg-primary text-white px-6 py-2 rounded-lg uppercase font-bold"
+                    :class="{ 'hidden md:block': !showNav, 'block': showNav }">Dashboard
                 </Link>
             </div>
             <div class="mt-30">

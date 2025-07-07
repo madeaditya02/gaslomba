@@ -14,11 +14,13 @@ import { badgeType } from '@/lib/utils';
 import { Pendaftaran } from '@/types';
 import { ref } from 'vue';
 import CustomModal from '@/components/CustomModal.vue';
-import { router } from "@inertiajs/vue3";
+import { router, usePage } from "@inertiajs/vue3";
 
-defineProps<{
+const props = defineProps<{
     perlombaan: Pendaftaran[]
 }>()
+
+const page = usePage()
 
 const selected = ref<Pendaftaran>()
 </script>
@@ -26,7 +28,9 @@ const selected = ref<Pendaftaran>()
 <template>
     <DashboardLayout>
         <div class="border bg-white border-gray-300 rounded-md px-5 py-3">
-            <h1 class="text-slate-800 font-semibold md:text-xl text-md">Selamat Datang, I Made Aditya Koding !</h1>
+            <h1 class="text-slate-800 font-semibold md:text-xl text-md">Selamat Datang, {{
+                page.props.auth.user.peserta?.nama }}
+                !</h1>
         </div>
         <Table class="mt-10 border border-gray-300 bg-white rounded-md" v-if="perlombaan.length > 0">
             <!-- <TableCaption></TableCaption> -->

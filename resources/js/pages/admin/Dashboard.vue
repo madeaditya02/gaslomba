@@ -46,7 +46,6 @@ const clickInput = () => {
           class="border border-primary rounded-full size-40 flex justify-center items-center shadow-[0_0_15px_rgba(0,0,0,0.3)] shadow-primary">
           <img :src="previewImage" alt="Profile Image" class="w-40 rounded-full" @click="clickInput" />
           <InputFile v-model="form.profile_picture" accept="image/*" class="hidden profile-input" />
-          <!--BLOM ISI ICON BUAT EDIT FOTO-->
         </div>
         <div class="flex md:flex-row flex-col md:gap-10 gap-5">
           <div class="flex flex-col md:gap-7 gap-5">
