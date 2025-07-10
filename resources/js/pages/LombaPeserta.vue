@@ -16,7 +16,7 @@ import { ref } from 'vue';
 import CustomModal from '@/components/CustomModal.vue';
 import { router, usePage } from "@inertiajs/vue3";
 
-const props = defineProps<{
+defineProps<{
     perlombaan: Pendaftaran[]
 }>()
 
@@ -51,7 +51,7 @@ const selected = ref<Pendaftaran>()
                         lomba.tanggal_perlombaan_string[1] }}</TableCell>
                     <TableCell class="text-slate-800 text-center">{{ lomba.cabang_lomba }}</TableCell>
                     <TableCell class="text-slate-800 text-center">
-                        {{lomba.anggota.map(anggota => anggota.nama).join(', ')}}
+                        <div v-for="anggota in lomba.anggota" :key="anggota.id_peserta">{{ anggota.nama }}</div>
                     </TableCell>
                     <TableCell>
                         <Badge :variant="badgeType(lomba.status)">{{ lomba.status }}</Badge>

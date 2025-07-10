@@ -18,7 +18,7 @@ class CabangLomba extends Model
      */
     public function lomba()
     {
-        return $this->belongsTo(Lomba::class, 'id_lomba', 'id_lomba');
+        return $this->belongsTo(Lomba::class, 'id_lomba', 'id_lomba')->withTrashed();
     }
 
     /**
@@ -28,7 +28,7 @@ class CabangLomba extends Model
      */
     public function tingkatan()
     {
-        return $this->belongsToMany(tingkatan::class, 'tingkatan_cablom', 'id_cablom', 'id_tingkatan');
+        return $this->belongsToMany(Tingkatan::class, 'tingkatan_cablom', 'id_cablom', 'id_tingkatan');
     }
 
     /**

@@ -4,6 +4,7 @@ import InputFile from '@/components/InputFile.vue';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import Button from '@/components/ui/button/Button.vue';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Combobox, ComboboxAnchor, ComboboxGroup, ComboboxInput, ComboboxItem, ComboboxList, ComboboxTrigger } from '@/components/ui/combobox';
 import { Input } from '@/components/ui/input';
 import Label from '@/components/ui/label/Label.vue';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
@@ -11,7 +12,8 @@ import Textarea from '@/components/ui/textarea/Textarea.vue';
 import DashboardLayout from '@/layouts/DashboardLayout.vue';
 import { Kategori, LombaFull, Tingkatan } from '@/types';
 import { useForm } from '@inertiajs/vue3';
-import { AlertCircle } from 'lucide-vue-next';
+import { AlertCircle, ChevronsUpDown, Search } from 'lucide-vue-next';
+import { computed, ref } from 'vue';
 
 const props = defineProps<{
   list_kategori: Kategori[],
@@ -33,6 +35,19 @@ const form = useForm({
   jumlah_anggota: props.lomba.cabang_lomba.map(cablom => cablom.jumlah_anggota),
   biaya: props.lomba.cabang_lomba.map(cablom => cablom.biaya),
 })
+
+const listCategories = ref(props.list_kategori)
+const textKategori = ref('')
+const dataKategori = computed(() => textKategori.value && !listCategories.value.find(k => k.id_kategori == textKategori.value) ? [...listCategories.value, { id_kategori: textKategori.value, nama_kategori: `Tambah "${textKategori.value}"` }] : [...listCategories.value])
+const addKategori = (val: Kategori) => {
+  if (val.nama_kategori.includes('Tambah "')) {
+    const newKategori = { ...val, nama_kategori: val.id_kategori.charAt(0).toUpperCase() + val.id_kategori.slice(1) }
+    form.kategori.push(newKategori)
+    listCategories.value.push(newKategori)
+  } else {
+    form.kategori.push(val)
+  }
+}
 </script>
 <template>
   <DashboardLayout>
@@ -55,22 +70,34 @@ const form = useForm({
           <!-- Kategori -->
           <div>
             <Label class="mb-2">Kategori</Label>
-            <Popover class="w-full">
-              <PopoverTrigger as-child>
-                <Button variant="outline" class="w-full justify-start font-normal">
-                  Pilih Kategori
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent align="start">
-                <div class="flex gap-2 items-center mt-3 first:mt-0" v-for="kategori in list_kategori"
-                  :key="kategori.id_kategori">
-                  <Checkbox :id="kategori.id_kategori" :value="kategori.id_kategori"
-                    :model-value="!!form.kategori.find(m => m.id_kategori == kategori.id_kategori)"
-                    @update:model-value="value => value ? form.kategori.push(kategori) : form.kategori = form.kategori.filter(m => m.id_kategori != kategori.id_kategori)" />
-                  <Label :for="kategori.id_kategori" class="block w-full">{{ kategori.nama_kategori }}</Label>
+            <Combobox by="label"
+              @update:model-value="(val) => form.kategori?.find(v => v.id_kategori == val.id_kategori) ? '' : addKategori(val as Kategori)"
+              class="w-full">
+              <ComboboxAnchor as-child>
+                <ComboboxTrigger as-child>
+                  <Button variant="outline" class="justify-between w-full font-normal">
+                    {{ 'Pilih Kategori' }}
+
+                    <ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                  </Button>
+                </ComboboxTrigger>
+              </ComboboxAnchor>
+
+              <ComboboxList class="!w-full px-0">
+                <div class="relative w-full items-center">
+                  <ComboboxInput class="pl-3 w-full focus-visible:ring-0 border-0 border-b rounded-none h-10"
+                    placeholder="Cari kategori..." v-model="textKategori" />
+                  <span class="absolute start-0 inset-y-0 flex items-center justify-center px-3">
+                    <Search class="size-4 text-muted-foreground" />
+                  </span>
                 </div>
-              </PopoverContent>
-            </Popover>
+                <ComboboxGroup class="w-full">
+                  <ComboboxItem v-for="framework in dataKategori" :key="framework.id_kategori" :value="framework">
+                    {{ framework.nama_kategori }}
+                  </ComboboxItem>
+                </ComboboxGroup>
+              </ComboboxList>
+            </Combobox>
             <div class="mt-2 flex gap-2 flex-wrap">
               <span class="rounded-full bg-blue-100 px-2 py-1 text-xs text-blue-800 cursor-pointer"
                 v-for="kategori in form.kategori" :key="kategori.id_kategori">

@@ -14,7 +14,6 @@ import {
 import {
     Pagination,
     PaginationContent,
-    PaginationEllipsis,
     PaginationItem,
     PaginationNext,
     PaginationPrevious,

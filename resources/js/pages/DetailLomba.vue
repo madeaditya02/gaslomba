@@ -3,11 +3,9 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { Link } from '@inertiajs/vue3';
 import { Button } from '@/components/ui/button';
 import type { Lomba } from '@/types/index'
-const props = defineProps<{
+defineProps<{
     lomba: Lomba
 }>()
-console.log(props.lomba)
-
 </script>
 <template>
     <AppLayout>

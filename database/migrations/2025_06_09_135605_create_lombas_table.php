@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('pamflet_perlombaan');
             $table->string('rekening');
             $table->foreignId('id_penyelenggara');
+            $table->softDeletes();
             $table->foreign('id_penyelenggara')->references('id_penyelenggara')->on('penyelenggara')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

@@ -117,7 +117,22 @@ class LombaController extends Controller
             'rekening' => $data['rekening'],
             'id_penyelenggara' => auth()->user()->penyelenggara->id_penyelenggara
         ]);
+
+        $kategoriYangAda = JenisPerlombaan::whereIn('id_kategori', $data['kategori'])->get();
+        $kategoriBelumAda = collect($data['kategori'])->filter(function ($kategori) use ($kategoriYangAda) {
+            return !$kategoriYangAda->contains('id_kategori', $kategori);
+        })->map(function ($kategori) {
+            return [
+                'id_kategori' => $kategori,
+                'nama_kategori' => ucfirst($kategori),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        })->all();
+        JenisPerlombaan::insert($kategoriBelumAda);
+
         $lomba->jenis_perlombaan()->attach($data['kategori']);
+
         for ($i=0; $i < $data['jumlah_cablom']; $i++) { 
             $cablom = $lomba->cabang_lomba()->create([
                 'nama_cablom' => $data['nama_cablom'][$i],
